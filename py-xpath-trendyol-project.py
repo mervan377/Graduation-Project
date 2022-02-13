@@ -5,7 +5,8 @@ from lxml import html
 import datetime
 import json
 
-cnx = mysql.connector.connect(user='u0528528_userABM', password='TNdp86X7KLut93B',host='94.73.147.224',database='u0528528_ABMGP')
+# cnx = mysql.connector.connect(user='u0528528_userABM', password='TNdp86X7KLut93B',host='94.73.147.224',database='u0528528_ABMGP')
+cnx = mysql.connector.connect(user='root', password='', host='localhost', database='ABM', charset='utf8')
 cursor = cnx.cursor()
 query = ("INSERT INTO products (product_title, product_url, crawling_date, product_brand, product_img, retailer_name, product_id, product_availability,product_price, product_price_2, product_position, product_category, product_subcategory) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)")
 
