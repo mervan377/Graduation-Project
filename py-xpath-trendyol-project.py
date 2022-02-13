@@ -6,7 +6,7 @@ import datetime
 import json
 
 # cnx = mysql.connector.connect(user='u0528528_userABM', password='TNdp86X7KLut93B',host='94.73.147.224',database='u0528528_ABMGP')
-cnx = mysql.connector.connect(user='root', password='', host='localhost', database='ABM', charset='utf8')
+cnx = mysql.connector.connect(user='root', password='', host='localhost', database='abm', charset='utf8')
 cursor = cnx.cursor()
 query = ("INSERT INTO products (product_title, product_url, crawling_date, product_brand, product_img, retailer_name, product_id, product_availability,product_price, product_price_2, product_position, product_category, product_subcategory) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)")
 
@@ -21,6 +21,7 @@ res = requests.get(url, headers=header)
 dom = html.fromstring(res.content.decode(encoding='utf-8'))
 product_urls = dom.xpath('//div[@class="p-card-wrppr"]/div/a/@href')
 data_id = dom.xpath('//div[@class="prdct-cntnr-wrppr"]/div/@data-id')
+
 
 for no, url in enumerate(product_urls, 1):
     product_url = ("https://www.trendyol.com" + url)
@@ -52,7 +53,7 @@ for no, url in enumerate(product_urls, 1):
             product_price_2 = float(
                 product_dom.xpath('//span[@class="prc-slg"]/text()')[0].split(' TL')[0].replace(',', '.'))
             if product_price_2 == product_price:
-                product_price_2 = None
+                pass 
 
 
     product_availability_xpath = '//div[@class="add-to-basket-button-text"]/text()'
@@ -75,7 +76,7 @@ for no, url in enumerate(product_urls, 1):
     product_position = "1"
     product_category = "Empty"
     product_subcategory = "Empty"
-
+    
     cursor.execute(query, (product_title, product_url, crawling_date, product_brand, product_img, retailer_name, product_id,product_availability, product_price, product_price_2, product_position, product_category, product_subcategory))
 
 cnx.commit()
