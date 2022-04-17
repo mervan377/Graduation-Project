@@ -81,10 +81,10 @@ def job():
     cnx.commit()
     cursor.close()
     cnx.close()
-# job()
+job()
 
-schedule.every().day.at("12:00").do(job)
-# schedule.every(10).seconds.do(job)
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+# schedule.every().day.at("12:00").do(job)
+# # schedule.every(10).seconds.do(job)
+# while True:
+#     schedule.run_pending()
+#     time.sleep(1)
